@@ -1,0 +1,3 @@
+rootProject.name = 'Kyr1eMusicByRN'
+
+include ':app'
