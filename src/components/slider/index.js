@@ -65,10 +65,10 @@ export default class Slider extends Component {
 const styles = StyleSheet.create({
     wrapper: {
       width,
-      height: 140,
+      height: 200,
     },
     image: {
         width,
-        height: 100
+        height: 150
     }
 })

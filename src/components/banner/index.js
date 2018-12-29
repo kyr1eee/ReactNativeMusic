@@ -6,7 +6,7 @@ export default class Banner extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
-          <Image source={require('./kyr1e.png')} style={styles.icon} />
+          <Image source={require('./kyr1e1.png')} style={styles.icon} />
           <Text style={styles.title}>Kyr1eee Music</Text>
           <View style={styles.nothing}></View>
       </View>
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         backgroundColor: styleConstant.bgColor.tab,
     },
     icon: {
-        width: 65,
+        width: 70,
         height: 40,
     },
     title: {
@@ -33,6 +33,6 @@ const styles = StyleSheet.create({
         fontFamily: 'cursive'
     },
     nothing: {
-        width: 65
+        width: 70
     }
 });
