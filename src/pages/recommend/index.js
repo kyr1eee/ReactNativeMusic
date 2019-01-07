@@ -5,11 +5,13 @@ import {
     Image,
     StyleSheet,
     Alert,
-    TouchableOpacity
+    TouchableOpacity,
+    FlatList
 } from 'react-native';
 import { styles } from '../recommend/recommend.style';
 import { getRecommend, getPopularList } from '../../api/recommend';
 import Slider from '../../components/slider';
+import PopularItem from '../../components/popularItem';
 
 export default class Recommend extends Component {
   static navigationOptions = {
@@ -24,6 +26,8 @@ export default class Recommend extends Component {
       popularList: []
     }
   }
+
+  _keyExtractor = (item) => item.dissid;
 
   getRecommendPic() {
     let slider = [];
@@ -44,10 +48,9 @@ export default class Recommend extends Component {
       if(res.data.code === 0) {
         popularList = popularList.concat(res.data.data.list);
         this.setState({popularList: popularList});
-        console.log('state', this.state.popularList);
       } 
     }).catch(e => {
-      console.error(e);
+      console.error('请求推荐歌单数据失败', e);
     })
   }
 
@@ -56,8 +59,22 @@ export default class Recommend extends Component {
       const slider = await this.getRecommendPic();
       const popularList = await this.getPopularList();
     } catch(error) {
-      console.error('请求推荐歌单图片失败', error);
+      console.error('请求轮播图片失败', error);
     }
+  }
+
+  renderPopularItem(popularList) {
+    const { imgurl, dissname, listennum, createtime} = popularList.item;
+    const creatorName = popularList.item.creator.name; 
+    console.log('flast list', popularList);
+    return (
+      <PopularItem imgUrl={imgurl}
+                   dissName={dissname}
+                   creatorName={creatorName}
+                   listenNum={listennum}
+                   createTime={createtime}
+      />
+    );
   }
 
   render() {
@@ -67,6 +84,11 @@ export default class Recommend extends Component {
         <View style={styles.recommendHeader}>
           <Text style={styles.recommendHeaderText}>热门歌单推荐</Text>
         </View>
+        <FlatList 
+          data={this.state.popularList}
+          keyExtractor={this._keyExtractor}
+          renderItem={this.renderPopularItem}
+        />
       </View>
     )
   }
