@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import { styles } from '../recommend/recommend.style';
-import { getRecommend } from '../../api/recommend';
+import { getRecommend, getPopularList } from '../../api/recommend';
 import Slider from '../../components/slider';
 
 export default class Recommend extends Component {
@@ -20,7 +20,8 @@ export default class Recommend extends Component {
   constructor(){
     super();
     this.state = {
-      recommendPic: []
+      recommendPic: [],
+      popularList: []
     }
   }
 
@@ -31,8 +32,20 @@ export default class Recommend extends Component {
         // concat生成新数组！！！
         slider = slider.concat(res.data.data.slider);
         this.setState({recommendPic: slider});
-        console.log(this.state.recommendPic);
       }
+    }).catch(e => {
+      console.error(e);
+    })
+  }
+
+  getPopularList() {
+    let popularList = [];
+    getPopularList().then(res => {
+      if(res.data.code === 0) {
+        popularList = popularList.concat(res.data.data.list);
+        this.setState({popularList: popularList});
+        console.log('state', this.state.popularList);
+      } 
     }).catch(e => {
       console.error(e);
     })
@@ -40,7 +53,8 @@ export default class Recommend extends Component {
 
   async componentWillMount() {
     try {
-      const res = await this.getRecommendPic();
+      const slider = await this.getRecommendPic();
+      const popularList = await this.getPopularList();
     } catch(error) {
       console.error('请求推荐歌单图片失败', error);
     }
@@ -50,7 +64,9 @@ export default class Recommend extends Component {
     return (
       <View style={styles.container}>
         <Slider imgList={this.state.recommendPic} />
-        <Text>推荐页面</Text>
+        <View style={styles.recommendHeader}>
+          <Text style={styles.recommendHeaderText}>热门歌单推荐</Text>
+        </View>
       </View>
     )
   }

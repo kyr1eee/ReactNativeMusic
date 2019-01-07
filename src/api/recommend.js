@@ -13,3 +13,25 @@ export async function getRecommend() {
         }
     });
 }
+
+export async function getPopularList() {
+    const url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg';
+    const params = Object.assign({}, commonParam, {
+      platform: 'yqq',
+      hostUin: 0,
+      needNewCode: 0,
+      categoryId: 10000000,
+      sortId: 5,
+      sin: 0,
+      ein: 29,
+      rnd: Math.random(),
+      format: 'json'
+    });
+    return axios.get(url, {
+            headers: {
+              Referer: 'https://y.qq.com/',
+                 Host: 'c.y.qq.com'
+             },
+             params
+          });
+}
