@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions} from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
-import Icon from '../icon';
 
 const { width } = Dimensions.get('window');
 const propTypes = {
@@ -27,16 +26,16 @@ export default class PopularItem extends Component {
               {this.props.dissName}
               </Text>
             </View>
-            <View>
-              <Icon iconUri={`./${user.png}`} />
+            <View style={styles.messageContainer}>
+              <Image source={require('./user.png')} style={styles.icon} />
               <Text>{this.props.creatorName}</Text>
             </View>
-            <View>
-              {/* <Icon iconUri={`./${date.png}`} /> */}
+            <View style={styles.messageContainer}>
+              <Image source={require('./date.png')} style={styles.icon} />
               <Text>{this.props.createTime}</Text>
             </View>
-            <View>
-              {/* <Icon iconUri={`./${customerservice.png}`} /> */}
+            <View style={styles.messageContainer}>
+              <Image source={require('./customerservice.png')} style={styles.icon} />
               <Text>{this.props.listenNum}次播放</Text>
             </View>
           </View>
@@ -59,6 +58,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
+  messageContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
   img: {
     width: 150,
     height: 150,
@@ -67,5 +71,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     maxWidth: width - 150 - 40
+  },
+  icon: {
+    width: 12,
+    height: 12,
+    marginRight: 6
   }
 })
