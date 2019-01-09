@@ -62,6 +62,8 @@ export default class Slider extends Component {
   }
 }
 
+Slider.propTypes = propTypes;
+
 const styles = StyleSheet.create({
     wrapper: {
       width,

@@ -11,8 +11,7 @@ import {
 import { styles } from '../recommend/recommend.style';
 import { getRecommend, getPopularList } from '../../api/recommend';
 import Slider from '../../components/slider';
-import PopularItem from '../../components/popularItem';
-
+import PopularItem, { ITEM_HEIGHT } from '../../components/popularItem';
 export default class Recommend extends Component {
   static navigationOptions = {
       tabBarLabel: '推荐',
@@ -25,6 +24,8 @@ export default class Recommend extends Component {
       recommendPic: [],
       popularList: []
     }
+    this.renderPopularItem = this.renderPopularItem.bind(this);
+    this.renderSlider = this.renderSlider.bind(this);
   }
 
   _keyExtractor = (item) => item.dissid;
@@ -66,7 +67,6 @@ export default class Recommend extends Component {
   renderPopularItem(popularList) {
     const { imgurl, dissname, listennum, createtime} = popularList.item;
     const creatorName = popularList.item.creator.name; 
-    console.log('flast list', popularList);
     return (
       <PopularItem imgUrl={imgurl}
                    dissName={dissname}
@@ -77,17 +77,27 @@ export default class Recommend extends Component {
     );
   }
 
-  render() {
+  renderSlider() {
     return (
-      <View style={styles.container}>
+      <View>
         <Slider imgList={this.state.recommendPic} />
         <View style={styles.recommendHeader}>
           <Text style={styles.recommendHeaderText}>热门歌单推荐</Text>
         </View>
+      </View>
+    );
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
         <FlatList 
           data={this.state.popularList}
           keyExtractor={this._keyExtractor}
           renderItem={this.renderPopularItem}
+          getItemLayout={(data, index) => ({length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index})}
+          refreshing={true}
+          ListHeaderComponent={this.renderSlider}
         />
       </View>
     )

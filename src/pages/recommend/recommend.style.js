@@ -10,10 +10,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width,
-        height: 50
+        height: 40,
+        backgroundColor: styleConstant.bgColor.init
     },
     recommendHeaderText: {
-        backgroundColor: styleConstant.bgColor.init,
         fontWeight: 'bold'
     }
 })

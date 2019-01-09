@@ -11,6 +11,9 @@ const propTypes = {
   createTime: PropTypes.string.isRequired,
 };
 
+
+// 用于FlatList的getItemLayout
+export const ITEM_HEIGHT = 170;
 export default class PopularItem extends Component {
   render() {
     return (
@@ -45,16 +48,25 @@ export default class PopularItem extends Component {
   }
 }
 
+PopularItem.propTypes = propTypes;
+
 const styles = StyleSheet.create({
   wrapper: {
-    height: 170
+    backgroundColor: '#f4f4f4' 
   },
   container: {
     flexDirection: 'row',
-    width,
+    width: width - 20,
+    marginHorizontal: 10,
+    marginVertical: 10,
+    backgroundColor: '#fff',
+    borderColor: '#fff',
+    borderRadius: 15,
+    borderWidth: 10,
   },
   message: {
     marginLeft: 20,
+    marginVertical: 5,
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
@@ -64,13 +76,13 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   img: {
-    width: 150,
-    height: 150,
+    width: ITEM_HEIGHT - 40,
+    height: ITEM_HEIGHT - 40,
   },
   dissName: {
     fontWeight: 'bold',
-    fontSize: 15,
-    maxWidth: width - 150 - 40
+    fontSize: 13,
+    maxWidth: width - 150 - 40,
   },
   icon: {
     width: 12,
