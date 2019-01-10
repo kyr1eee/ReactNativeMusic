@@ -10,14 +10,28 @@ export default class SingerItem extends Component {
   constructor(props) {
     super(props);
     this.renderSingerLine = this.renderSingerLine.bind(this);
+    this.renderHeader = this.renderHeader.bind(this);
+  }
+
+  // 歌手头部组件
+  renderHeader() {
+    return (
+      <View style={styles.headerContainer}>
+        <Image style={styles.headerIcon} source={require('../../img/head.jpg')} />
+        <Text style={styles.headerMessage}>歌手</Text>
+      </View>
+    );
   }
 
   renderSingerLine(singerList) {
     // 坑: FlatList的传入data后数据结构改变为{index: 0, item: [...], seperators: {...}}
-    const { name, img} = singerList.item;
+    const { name, img } = singerList.item;
     return (
       <View style={styles.singerLine}>
-        <Image style={styles.singerIcon} source={{uri: img}}/>
+        <Image style={styles.singerIcon} 
+               source={{uri: img}}
+               defaultSource={require('../../img/head.jpg')}       
+        />
         <Text style={styles.singerName}>{name}</Text>
       </View>
     );
@@ -26,9 +40,7 @@ export default class SingerItem extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* <View style={styles.titleWrapper}>
-          <Text style={styles.title}>{}</Text>
-        </View> */}
+        {this.renderHeader()}
         <FlatList 
           data={this.props.singerList}
           keyExtractor={item => item.mid}
@@ -43,6 +55,18 @@ export default class SingerItem extends Component {
 SingerItem.propTypes = propTypes;
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  headerIcon: {
+    width: 100,
+    height: 100,
+  },
+  headerMessage: {
+    fontSize: 15
+  },
   singerLine: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -52,5 +76,8 @@ const styles = StyleSheet.create({
   singerIcon: {
     width: 50,
     height: 50,
+  },
+  singerName: {
+    marginLeft: 6
   }
 });

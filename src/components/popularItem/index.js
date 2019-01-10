@@ -39,7 +39,7 @@ export default class PopularItem extends Component {
             </View>
             <View style={styles.messageContainer}>
               <Image source={require('./customerservice.png')} style={styles.icon} />
-              <Text>{this.props.listenNum}次播放</Text>
+              <Text>{this.props.listenNum}</Text>
             </View>
           </View>
         </View>
