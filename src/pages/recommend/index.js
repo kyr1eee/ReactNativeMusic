@@ -65,6 +65,7 @@ export default class Recommend extends Component {
   }
 
   renderPopularItem(popularList) {
+    // 坑: FlatList的传入data后数据结构改变为{index: 0, item: [...], seperators: {...}}
     const { imgurl, dissname, listennum, createtime} = popularList.item;
     const creatorName = popularList.item.creator.name; 
     return (
