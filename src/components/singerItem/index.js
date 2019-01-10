@@ -9,23 +9,15 @@ const propTypes = {
 export default class SingerItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      iconUri : []
-    };
     this.renderSingerLine = this.renderSingerLine.bind(this);
   }
 
   renderSingerLine(singerList) {
     // 坑: FlatList的传入data后数据结构改变为{index: 0, item: [...], seperators: {...}}
-    const { name, mid, img} = singerList.item;
-    let currentIndex = singerList.index;
-    let singerIconUri = `https://y.gtimg.cn/music/photo_new/T001R300x300M000${mid}.jpg?max_age=2592000`;
-    this.setState({
-      iconUri: this.state.iconUri.concat([singerIconUri])
-    });
+    const { name, img} = singerList.item;
     return (
       <View style={styles.singerLine}>
-        <Image style={styles.singerIcon} source={{uri: this.state.iconUri[currentIndex]}}/>
+        <Image style={styles.singerIcon} source={{uri: img}}/>
         <Text style={styles.singerName}>{name}</Text>
       </View>
     );
@@ -39,7 +31,7 @@ export default class SingerItem extends Component {
         </View> */}
         <FlatList 
           data={this.props.singerList}
-          keyExtractor={item => item.Fsinger_id}
+          keyExtractor={item => item.mid}
           renderItem={this.renderSingerLine}
           refreshing={true}
         />

@@ -23,6 +23,7 @@ export default class Recommend extends Component {
     };
   }
 
+  // 处理歌手数据, 拼接歌手图片URI
   handleSingerData(singer) {
     let result = [];
     singer.forEach(item => {
@@ -37,12 +38,12 @@ export default class Recommend extends Component {
 
   getSingerList() {
     let singer = [];
+    let afterHandleSinger = [];
     getSingerList().then(res => {
       if(res.data.code === 0) {
         singer = singer.concat(res.data.data.list);
-        let test = this.handleSingerData(singer);
-        console.log('test', test)
-        this.setState({singer: singer});
+        afterHandleSinger = this.handleSingerData(singer);
+        this.setState({singer: afterHandleSinger});
       }
     }).catch(e => {
       console.log(e);
