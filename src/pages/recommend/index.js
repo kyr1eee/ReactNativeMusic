@@ -96,7 +96,7 @@ export default class Recommend extends Component {
           data={this.state.popularList}
           keyExtractor={this._keyExtractor}
           renderItem={this.renderPopularItem}
-          getItemLayout={(data, index) => ({length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index})}
+          // getItemLayout={(data, index) => ({length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index})}
           refreshing={true}
           ListHeaderComponent={this.renderSlider}
         />

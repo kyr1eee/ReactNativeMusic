@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, FlatList, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, SectionList, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 const { width } = Dimensions.get('window');
 const propTypes = {
@@ -11,6 +11,7 @@ export default class SingerItem extends Component {
     super(props);
     this.renderSingerLine = this.renderSingerLine.bind(this);
     this.renderHeader = this.renderHeader.bind(this);
+    this.renderSingerHeader = this.renderSingerHeader.bind(this);
   }
 
   // 歌手头部组件
@@ -23,14 +24,22 @@ export default class SingerItem extends Component {
     );
   }
 
+  renderSingerHeader(data) {
+    const { nameIndex } = data.section;
+    return (
+      <Text style={styles.singerHeader}>{nameIndex}</Text>
+    );
+  }
+
   renderSingerLine(singerList) {
-    // 坑: FlatList的传入data后数据结构改变为{index: 0, item: [...], seperators: {...}}
+    console.log('section list', singerList);
+    // sections: [{nameIndex: '', data: ''}]
+    // 坑: SectionList的传入data后数据结构改变为{index: 0, item: sections.data ,section: sections[0] ,seperators: {...}}
     const { name, img } = singerList.item;
     return (
       <View style={styles.singerLine}>
         <Image style={styles.singerIcon} 
                source={{uri: img}}
-               defaultSource={require('../../img/head.jpg')}       
         />
         <Text style={styles.singerName}>{name}</Text>
       </View>
@@ -42,11 +51,11 @@ export default class SingerItem extends Component {
       <View style={styles.container}>
         {this.renderHeader()}
         {/* 后续图片存在无法加载现象 */}
-        <FlatList 
-          data={this.props.singerList}
-          keyExtractor={item => item.mid}
+        <SectionList 
+          sections={this.props.singerList}
+          keyExtractor={(item, index) => index}
           renderItem={this.renderSingerLine}
-          refreshing={true}
+          renderSectionHeader={this.renderSingerHeader}
         />
       </View>
     );
