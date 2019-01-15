@@ -41,6 +41,7 @@ export default class SingerItem extends Component {
     return (
       <View style={styles.container}>
         {this.renderHeader()}
+        {/* 后续图片存在无法加载现象 */}
         <FlatList 
           data={this.props.singerList}
           keyExtractor={item => item.mid}
