@@ -9,7 +9,8 @@ import {
 import { styles } from '../styles/tab';
 import { getSingerList } from '../../api/singer';
 import SingerItem from '../../components/singerItem';
-import Singer from '../../common/js/singer'
+import Singer from '../../common/js/singer';
+import Loading from '../../components/loading';
 export default class Recommend extends Component {
   static navigationOptions = {
       tabBarLabel: '歌手',
@@ -72,8 +73,6 @@ export default class Recommend extends Component {
         data: currentNameIndex 
       });
     });
-    console.log('nameIndex', nameIndex);
-    console.log('result', result);
     return result;
   }
 
@@ -82,7 +81,6 @@ export default class Recommend extends Component {
     let afterHandleSinger = [];
     getSingerList().then(res => {
       if(res.data.code === 0) {
-        console.log(res);
         singer = singer.concat(res.data.data.list);
         afterHandleSinger = this.handleSingerData(singer);
         this.setState({singer: afterHandleSinger});
@@ -101,10 +99,14 @@ export default class Recommend extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <SingerItem singerList={this.state.singer} />
-      </View>
-    )
+    return this.state.singer.length > 0 ? (
+          <View style={styles.container}>
+            <SingerItem singerList={this.state.singer} />
+          </View>
+        ) : (
+          <View style={styles.container}>
+            <Loading ifManIcon={true} />
+          </View>
+        );
   }
 }

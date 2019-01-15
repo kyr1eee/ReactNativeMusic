@@ -5,7 +5,8 @@ export const styleConstant = {
         click: '#ea7f6b'
     },
     bgColor: {
-        init: '#eee',
-        tab: '#ea6f5a'
+        init: '#f4f4f4',
+        tab: '#ea6f5a',
+        header: '#eee'
     }
 }

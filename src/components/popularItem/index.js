@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 const { width } = Dimensions.get('window');
@@ -17,7 +17,7 @@ export const ITEM_HEIGHT = 170;
 export default class PopularItem extends Component {
   render() {
     return (
-      <View style={styles.wrapper}>
+      <TouchableOpacity style={styles.wrapper}>
         <View style={styles.container}>
           <Image source={{uri: this.props.imgUrl}} style={styles.img} />
           <View style={styles.message}>
@@ -43,7 +43,7 @@ export default class PopularItem extends Component {
             </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

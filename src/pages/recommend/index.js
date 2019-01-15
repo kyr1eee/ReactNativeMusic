@@ -8,10 +8,11 @@ import {
     TouchableOpacity,
     FlatList
 } from 'react-native';
-import { styles } from '../recommend/recommend.style';
+import { styles } from './recommend.style';
 import { getRecommend, getPopularList } from '../../api/recommend';
 import Slider from '../../components/slider';
 import PopularItem, { ITEM_HEIGHT } from '../../components/popularItem';
+import Loading from '../../components/loading';
 export default class Recommend extends Component {
   static navigationOptions = {
       tabBarLabel: '推荐',
@@ -90,7 +91,7 @@ export default class Recommend extends Component {
   }
 
   render() {
-    return (
+    return this.state.popularList.length > 0 && this.state.recommendPic.length > 0 ? (
       <View style={styles.container}>
         <FlatList 
           data={this.state.popularList}
@@ -100,6 +101,10 @@ export default class Recommend extends Component {
           refreshing={true}
           ListHeaderComponent={this.renderSlider}
         />
+      </View>
+    ) : (
+      <View style={styles.container}>
+        <Loading ifManIcon={true} />
       </View>
     )
   }
