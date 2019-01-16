@@ -11,6 +11,7 @@ import { getSingerList } from '../../api/singer';
 import SingerItem from '../../components/singerItem';
 import Singer from '../../common/js/singer';
 import Loading from '../../components/loading';
+import SideBar from '../../components/sideBar';
 export default class Recommend extends Component {
   static navigationOptions = {
       tabBarLabel: '歌手',
@@ -20,7 +21,8 @@ export default class Recommend extends Component {
   constructor() {
     super();
     this.state = {
-      singer: []
+      singer: [],
+      nameIndex: [],
     };
   }
 
@@ -33,8 +35,6 @@ export default class Recommend extends Component {
     // ]
     let result = [];
     let nameIndex = [];
-    let allSinger = singer.slice(0, singer.length);
-
     // 热门歌手
     let hotSinger = singer.slice(0, 10);
     hotSinger = hotSinger.map(item => new Singer({
@@ -55,6 +55,7 @@ export default class Recommend extends Component {
     nameIndex.sort((a, b) => {
       return a.charCodeAt(0) - b.charCodeAt(0);
     })
+    this.setState({nameIndex: nameIndex});
 
     // 构造数据,复杂度高,待改进
     nameIndex.forEach((nameIndexItem, index) => {
@@ -102,6 +103,7 @@ export default class Recommend extends Component {
     return this.state.singer.length > 0 ? (
           <View style={styles.container}>
             <SingerItem singerList={this.state.singer} />
+            <SideBar nameIndex={this.state.nameIndex} />
           </View>
         ) : (
           <View style={styles.container}>

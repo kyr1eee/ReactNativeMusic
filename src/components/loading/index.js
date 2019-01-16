@@ -15,7 +15,7 @@ export default class Loading extends PureComponent {
     const { ifManIcon } = this.props;
     return ifManIcon ? (
       <View>
-        <Image source={require('./loading_man.gif')} />
+        <Image source={require('./loading_nba.gif')} />
       </View>
     ) : (
       <View>
