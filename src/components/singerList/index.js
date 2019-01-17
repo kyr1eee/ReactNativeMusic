@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text, Image, SectionList, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { styles } from './singerItem.style';
+import { styles } from './singerList.style';
 import LazyImage from '../lazyImage';
-import Loading from '../loading';
-import SingerLine from '../singerLine';
+import DetailList from '../detailList';
+import { withNavigation } from 'react-navigation';
 const propTypes = {
   singerList: PropTypes.array.isRequired
 };
 
-export default class SingerItem extends Component {
+class SingerList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,7 +50,6 @@ export default class SingerItem extends Component {
 
   captureSectionList(ref) {
     this.sectionList = ref;
-    console.log('ref:',ref.scrollToLocation);
   }
 
   renderSingerHeader(data) {
@@ -67,7 +66,10 @@ export default class SingerItem extends Component {
     // 坑: SectionList的传入data后数据结构改变为{index: 0, item: sections.data ,section: sections[0] ,seperators: {...}}
     const { name, img } = singerList.item;
     return (
-      <TouchableOpacity style={styles.singerLine}>
+      <TouchableOpacity 
+        style={styles.singerLine}
+        onPress={() => this.props.navigation.navigate('DetailList')}  
+      >
         <LazyImage 
             style={styles.singerIcon} 
             source={{ uri : img } }
@@ -102,4 +104,14 @@ export default class SingerItem extends Component {
   }
 }
 
-SingerItem.propTypes = propTypes;
+SingerList.propTypes = propTypes;
+export default withNavigation(SingerList);
+// const RootStack = createStackNavigator({
+//   Singer: SingerList,
+//   SingerDetail: DetailList,
+// }, {
+//   initialRouteName: 'SingerList'
+// });
+
+// const AppContainer = createAppContainer(RootStack);
+

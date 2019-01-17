@@ -1,24 +1,37 @@
-import {  createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
+import {  createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 import Recommend from '../pages/recommend';
 import Singer from '../pages/singer';
 import Rank from '../pages/rank';
 import Search from '../pages/search';
+import DetailList from '../components/detailList';
 import { styleConstant } from '../styles/constant';
 import { styles } from './TopNavigation.style';
 
+const SingerStack = createStackNavigator({
+  Singer: {
+    screen: Singer
+  },
+  DetailList: {
+    screen: DetailList
+  }
+});
 const TabNavigator = createMaterialTopTabNavigator(
     {
         Recommend: { 
-            screen: Recommend
+            screen: Recommend,
+            path: '/recommend',
         },
         Singer: {
-            screen: Singer
+            screen: SingerStack,
+            path: '/singer'
         },
         Rank: {
-            screen: Rank
+            screen: Rank,
+            path: '/rank'
         },
         Search: {
-            screen: Search
+            screen: Search,
+            path: '/search'
         }
     },
     {

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { styles } from '../styles/tab';
 import { getSingerList } from '../../api/singer';
-import SingerItem from '../../components/singerItem';
+import SingerList from '../../components/singerList';
 import Singer from '../../common/js/singer';
 import Loading from '../../components/loading';
 import SideBar from '../../components/sideBar';
@@ -102,7 +102,7 @@ export default class Recommend extends Component {
   render() {
     return this.state.singer.length > 0 ? (
           <View style={styles.container}>
-            <SingerItem singerList={this.state.singer} />
+            <SingerList singerList={this.state.singer} />
             <SideBar nameIndex={this.state.nameIndex} />
           </View>
         ) : (
