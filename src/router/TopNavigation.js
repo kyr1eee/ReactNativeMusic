@@ -1,20 +1,11 @@
-import {  createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import {  createMaterialTopTabNavigator, createAppContainer, createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import Recommend from '../pages/recommend';
 import Singer from '../pages/singer';
 import Rank from '../pages/rank';
 import Search from '../pages/search';
-import DetailList from '../components/detailList';
 import { styleConstant } from '../styles/constant';
 import { styles } from './TopNavigation.style';
 
-const SingerStack = createStackNavigator({
-  Singer: {
-    screen: Singer
-  },
-  DetailList: {
-    screen: DetailList
-  }
-});
 const TabNavigator = createMaterialTopTabNavigator(
     {
         Recommend: { 
@@ -22,7 +13,7 @@ const TabNavigator = createMaterialTopTabNavigator(
             path: '/recommend',
         },
         Singer: {
-            screen: SingerStack,
+            screen: Singer,
             path: '/singer'
         },
         Rank: {
@@ -52,7 +43,7 @@ const TabNavigator = createMaterialTopTabNavigator(
             style: styles.container,
             labelStyle: styles.label,
             // tab页下面的一条线
-            indicatorStyle: { height: 2 }
+            indicatorStyle: { height: 2 },
         },
         // tab bar位置
         tabBarPosition: 'top',

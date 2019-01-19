@@ -68,7 +68,7 @@ class SingerList extends Component {
     return (
       <TouchableOpacity 
         style={styles.singerLine}
-        onPress={() => this.props.navigation.navigate('DetailList')}  
+        onPress={() => this.props.navigation.navigate('SingerDetail')}  
       >
         <LazyImage 
             style={styles.singerIcon} 
@@ -80,6 +80,7 @@ class SingerList extends Component {
   }
 
   render() {
+    console.log('navigation:', this.props.navigation.navigate('Detail'));
     return (
       <View style={styles.container}>
       {/* <TouchableOpacity onPress={this.onScrollToSection}><Text>aaaaaaaa</Text></TouchableOpacity> */}
