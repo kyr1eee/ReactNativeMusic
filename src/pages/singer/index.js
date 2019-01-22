@@ -6,7 +6,7 @@ import {
     FlatList,
     StyleSheet,
 } from 'react-native';
-import { styles } from '../styles/tab';
+import { styles } from './singer.style';
 import { getSingerList } from '../../api/singer';
 import SingerList from '../../components/singerList';
 import Singer from '../../common/js/singer';
@@ -104,6 +104,7 @@ export default class Recommend extends Component {
   render() {
     return this.state.singer.length > 0 ? (
           <View style={styles.container}>
+            <Banner />
             <SingerList singerList={this.state.singer} />
             <SideBar nameIndex={this.state.nameIndex} />
           </View>

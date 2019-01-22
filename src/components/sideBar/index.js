@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
+
+const { height } = Dimensions.get('window');
 
 const propTypes = {
   nameIndex: PropTypes.array.isRequired
@@ -40,9 +42,11 @@ const styles = StyleSheet.create({
   sideBarContainer: {
     position: 'absolute',
     right: 0,
+    bottom: 50,
+    flexDirection: 'column',
+    width: 20,
   },
   letterContainer: {
-    width: 20,
     height: 20,
   }
 });

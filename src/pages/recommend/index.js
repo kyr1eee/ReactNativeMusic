@@ -93,9 +93,10 @@ export default class Recommend extends Component {
   }
 
   render() {
-    return this.state.popularList.length > 0 && this.state.recommendPic.length > 0 ? (
-      <View style={styles.container}>
-        <Banner />
+  return (
+    <View style={styles.container}>
+    <Banner />
+    {this.state.popularList.length > 0 && this.state.recommendPic.length > 0 ? (
         <FlatList 
           data={this.state.popularList}
           keyExtractor={this._keyExtractor}
@@ -104,11 +105,10 @@ export default class Recommend extends Component {
           refreshing={true}
           ListHeaderComponent={this.renderSlider}
         />
-      </View>
     ) : (
-      <View style={styles.container}>
-        <Loading ifManIcon={true} />
-      </View>
-    )
+      <Loading ifManIcon={true} />
+    )}
+    </View>
+  );
   }
 }

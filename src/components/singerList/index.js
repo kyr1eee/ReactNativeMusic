@@ -5,7 +5,6 @@ import { styles } from './singerList.style';
 import LazyImage from '../lazyImage';
 import DetailList from '../detailList';
 import { withNavigation } from 'react-navigation';
-import Banner from '../banner';
 const propTypes = {
   singerList: PropTypes.array.isRequired
 };
@@ -83,7 +82,6 @@ class SingerList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Banner />
       {/* <TouchableOpacity onPress={this.onScrollToSection}><Text>aaaaaaaa</Text></TouchableOpacity> */}
         {/* 后续图片存在无法加载现象 */}
         <SectionList 

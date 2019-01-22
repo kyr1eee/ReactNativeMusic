@@ -5,7 +5,7 @@ import {
     Image,
     StyleSheet,
 } from 'react-native';
-import { styles } from '../styles/tab';
+import { styles } from './rank.style';
 import Banner from '../../components/banner';
 export default class Recommend extends Component {
   static navigationOptions = {

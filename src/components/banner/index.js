@@ -18,6 +18,8 @@ export default class Banner extends PureComponent {
 
 const styles = StyleSheet.create({
     container: {
+        position: 'relative',
+        top: 0,
         height: 50,
         flexDirection: 'row',
         alignItems: 'center',
