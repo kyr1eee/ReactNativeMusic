@@ -12,10 +12,12 @@ import SingerList from '../../components/singerList';
 import Singer from '../../common/js/singer';
 import Loading from '../../components/loading';
 import SideBar from '../../components/sideBar';
+import Banner from '../../components/banner';
 export default class Recommend extends Component {
   static navigationOptions = {
       tabBarLabel: '歌手',
-      headerTitle: '歌手'
+      headerTitle: '歌手',
+      tabBarIcon: <Image source={require('./Singer.png')} style={{width: 20, height: 20, color: '#fff'}}/>
   };
   
   constructor() {
@@ -106,7 +108,8 @@ export default class Recommend extends Component {
             <SideBar nameIndex={this.state.nameIndex} />
           </View>
         ) : (
-          <View style={styles.container}>
+          <View style={{flex: 1}}>
+            <Banner />
             <Loading ifManIcon={true} />
           </View>
         );

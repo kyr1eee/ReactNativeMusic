@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         paddingBottom: 1,
     },
     label: {
-        fontSize: 15,
+        fontSize: 12,
         margin: 1,
         fontWeight: 'bold'
     }

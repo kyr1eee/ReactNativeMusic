@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import { View, Text, Image } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { styleConstant } from '../../styles/constant'
+
+const {width} = Dimensions.get('window');
 export default class Banner extends PureComponent {
   render() {
     return (
@@ -16,11 +18,12 @@ export default class Banner extends PureComponent {
 
 const styles = StyleSheet.create({
     container: {
-        height: 40,
+        height: 50,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         backgroundColor: styleConstant.bgColor.tab,
+        width,
     },
     icon: {
         width: 70,

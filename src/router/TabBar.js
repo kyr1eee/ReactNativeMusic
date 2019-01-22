@@ -1,4 +1,4 @@
-import TopNavigation from './TopNavigation';
+import BottomNavigation from './BottomNavigation';
 import Banner from '../components/banner';
 import React, { Component } from 'react';
 import { View } from 'react-native';
@@ -7,7 +7,7 @@ export default class TabBar extends Component {
     return (
       <View style={{flex: 1}}>
         <Banner />
-        <TopNavigation />
+        <BottomNavigation />
       </View>
     );
   }

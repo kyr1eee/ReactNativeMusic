@@ -13,10 +13,12 @@ import { getRecommend, getPopularList } from '../../api/recommend';
 import Slider from '../../components/slider';
 import PopularItem, { ITEM_HEIGHT } from '../../components/popularItem';
 import Loading from '../../components/loading';
+import Banner from '../../components/banner';
 export default class Recommend extends Component {
   static navigationOptions = {
       tabBarLabel: '推荐',
-      headerTitle: '推荐'
+      headerTitle: '推荐',
+      tabBarIcon: <Image source={require('./Recommend.png')} style={{width: 20, height: 20}}/>
   };
 
   constructor(){
@@ -93,6 +95,7 @@ export default class Recommend extends Component {
   render() {
     return this.state.popularList.length > 0 && this.state.recommendPic.length > 0 ? (
       <View style={styles.container}>
+        <Banner />
         <FlatList 
           data={this.state.popularList}
           keyExtractor={this._keyExtractor}

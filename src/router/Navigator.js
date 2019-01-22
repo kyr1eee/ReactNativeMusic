@@ -1,21 +1,20 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import TabBar from './TabBar';
-import TopNavigation from './TopNavigation';
+import BottomNavigation from './BottomNavigation';
 import DetailList from '../components/detailList';
+
+// bug, TopNavigation由createMaterialTopTabNavigator创建, 如果引入其他组件， 在引入该组件于此, 则无法发生路由跳转
 const Navigator = createStackNavigator({
-  TabNavigation: {
-    screen: TabBar
+  BottomMenu: {
+    screen: BottomNavigation
   },
   SingerDetail: {
     screen: DetailList,
-    path: 'singer/:singerMid'
   }
 }, {
-  initialRouteName: 'TabNavigation',
+  initialRouteName: 'BottomMenu',
   mode: 'card',
   headerMode: 'none',
   navigationOptions: () => {
-
   }
 });
 

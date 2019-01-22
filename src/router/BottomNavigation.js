@@ -1,12 +1,12 @@
-import {  createMaterialTopTabNavigator, createAppContainer, createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import {  createMaterialTopTabNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import Recommend from '../pages/recommend';
 import Singer from '../pages/singer';
 import Rank from '../pages/rank';
 import Search from '../pages/search';
 import { styleConstant } from '../styles/constant';
-import { styles } from './TopNavigation.style';
+import { styles } from './BottomNavigation.style';
 
-const TabNavigator = createMaterialTopTabNavigator(
+const TabNavigator = createBottomTabNavigator(
     {
         Recommend: { 
             screen: Recommend,
@@ -32,7 +32,7 @@ const TabNavigator = createMaterialTopTabNavigator(
             // 未被选中时显示的color
             inactiveTintColor: styleConstant.textColor.init,
             // 是否显示图标,默认为false
-            showIcon: false,
+            showIcon: true,
             // 是否显示文本,默认为true,
             showLabel: true,
             // 是否转换为大写,默认为true,
@@ -43,10 +43,10 @@ const TabNavigator = createMaterialTopTabNavigator(
             style: styles.container,
             labelStyle: styles.label,
             // tab页下面的一条线
-            indicatorStyle: { height: 2 },
+            // indicatorStyle: { height: 2 },
         },
         // tab bar位置
-        tabBarPosition: 'top',
+        tabBarPosition: 'bottom',
         // 是否允许滑动切换tab页
         swipeEnabled: true,
         // 是否在切换tab页时使用动画
@@ -54,8 +54,9 @@ const TabNavigator = createMaterialTopTabNavigator(
         // 是否懒加载
         lazy: true,
         // 返回按钮是否导致tab切换到初始tab,[initialRoute, none],
-        backBehavior: 'none'
+        backBehavior: 'none',
     }
 );
 
+// export default TabNavigator;
 export default createAppContainer(TabNavigator);
