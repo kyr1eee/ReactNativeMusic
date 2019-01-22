@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { styles } from './singerList.style';
 import LazyImage from '../lazyImage';
 import DetailList from '../detailList';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, StackActions } from 'react-navigation';
 const propTypes = {
   singerList: PropTypes.array.isRequired
 };
@@ -64,11 +64,20 @@ class SingerList extends Component {
   renderSingerLine(singerList) {
     // sections: [{nameIndex: '', data: ''}]
     // 坑: SectionList的传入data后数据结构改变为{index: 0, item: sections.data ,section: sections[0] ,seperators: {...}}
-    const { name, img } = singerList.item;
+    const { name, img, mid } = singerList.item;
+    console.log('singer:', singerList);
+    const pushActions = StackActions.push({
+      routeName: 'SingerDetail',
+      params: {
+        imgUrl: img,
+        singerName: name,
+        mid,
+      }
+    });
     return (
       <TouchableOpacity 
         style={styles.singerLine}
-        onPress={() => this.props.navigation.navigate('SingerDetail')}  
+        onPress={() => this.props.navigation.dispatch(pushActions)}  
       >
         <LazyImage 
             style={styles.singerIcon} 

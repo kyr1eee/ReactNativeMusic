@@ -20,3 +20,22 @@ export function getSingerList() {
     }
   });
 }
+
+export function getSingerDetail(mid) {
+  const url = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg';
+  const query = Object.assign({}, commonParam, {
+    platform: 'yqq',
+    needNewCode: 0,
+    singermid: singermid,
+    order: 'listen',
+    begin: 0,
+    num: 100,
+    songstatus: 1
+  });
+  
+  return axios.get(url, {
+    params: {
+      ...query
+    }
+  });
+}

@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import GoBackBar from '../goBackBar';
-export default class DetailList extends Component {
+import { withNavigation } from 'react-navigation';
+import { styles } from '../../pages/recommend/recommend.style';
+class DetailList extends Component {
+  constructor(props) {
+    super(props);
+    const { navigation } = this.props;
+    this.state = {
+      imgUrl: navigation.getParam('imgUrl'),
+      singerName: navigation.getParam('singerName'),
+      mid: navigation.getParam('mid')
+    }
+  }
+
   render() {
+    console.log(this.state);
     return (
       <View>
-        <GoBackBar />
-        <Text>detail!!!</Text>
+        <GoBackBar title={this.state.singerName} goBack={() => this.props.navigation.goBack()} />
+        <Image source={{uri: this.state.imgUrl}} style={styles.img}/>
       </View>
     )
   }
 }
+
+export default withNavigation(DetailList);
