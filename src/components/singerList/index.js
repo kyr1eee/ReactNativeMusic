@@ -65,7 +65,6 @@ class SingerList extends Component {
     // sections: [{nameIndex: '', data: ''}]
     // 坑: SectionList的传入data后数据结构改变为{index: 0, item: sections.data ,section: sections[0] ,seperators: {...}}
     const { name, img, mid } = singerList.item;
-    console.log('singer:', singerList);
     const pushActions = StackActions.push({
       routeName: 'SingerDetail',
       params: {

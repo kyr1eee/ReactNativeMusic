@@ -41,7 +41,7 @@ class DetailList extends Component {
         <View style={styles.imgContainer}>
           <ImageBackground blurRadius={0.1} source={{uri: this.state.imgUrl}} style={styles.img}/>
         </View>
-        <SongList musicData={this.state.musicList}/>
+        <SongList musicData={this.state.musicList} singerName={this.state.singerName}/>
       </View>
     )
   }

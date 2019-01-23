@@ -1,32 +1,53 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {View, FlatList, StyleSheet } from 'react-native';
+import {View, FlatList, StyleSheet, Dimensions } from 'react-native';
 import SongLine from '../songLine';
-
+const {width} = Dimensions.get('window');
 const propTypes = {
-  musicData: PropTypes.array.isRequired
+  musicData: PropTypes.array.isRequired,
+  singerName: PropTypes.string.isRequired
 };
 
 export default class SongList extends Component {
   constructor(props) {
     super(props);
-    this.renderItem = this.renderItem.bind(this);
-    console.log(this.props.musicData);
+    this.renderSongLine = this.renderSongLine.bind(this);
+    this.renderItemSeparator = this.renderItemSeparator.bind(this);
   }
 
-  renderItem() {
-
+  renderSongLine(data) {
+    const {index} = data;
+    const musicData = data.item.musicData;
+    const songName = musicData.songname;
+    const albumName = musicData.albumname;
+    const singerName = this.props.singerName;
+    console.log(index, songName, albumName, singerName);
     return(
-      <SongLine />
+      <SongLine 
+        index={index + 1} 
+        songName={songName} 
+        albumName={albumName} 
+        singerName={singerName}
+      />
     )
+  }
+
+  renderItemSeparator() {
+    return (
+      <View style={styles.line}></View>
+    );
   }
 
   render() {
     return (
       <View style={styles.container}>
         <FlatList
-          data={this.musicData} 
-          renderItem={this.renderItem}
+          data={this.props.musicData} 
+          keyExtractor={(item) => 'singer' + item.index}
+          renderItem={this.renderSongLine}
+          ItemSeparatorComponent={this.renderItemSeparator}
+          // refreshing={false}
+          // onRefresh={() => alert(1)}
         />
       </View>
     )
@@ -36,5 +57,13 @@ export default class SongList extends Component {
 SongList.propTypes = propTypes;
 
 const styles = StyleSheet.create({
-
+  container: {
+    // fuck you !!!!!!!
+    // flex: 1
+  },
+  line: {
+    height: 1,
+    width,
+    backgroundColor: '#f4f4f4'
+  }
 });

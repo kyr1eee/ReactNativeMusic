@@ -23,10 +23,10 @@ export default class SongLine extends PureComponent {
         </View>
         <View style={styles.centerContainer}>
           <View style={styles.songNameContainer}>
-            <Text style={styles.songName}>{this.props.songName}</Text>
+            <Text style={styles.songName} numberOfLines={1} ellipsizeMode="tail">{this.props.songName}</Text>
           </View>
           <View style={styles.detailContainer}>
-            <Text style={styles.detail}>{this.props.singerName} - {this.props.albumName}</Text>
+            <Text style={styles.detail} numberOfLines={1} ellipsizeMode="tail">{this.props.singerName} - {this.props.albumName}</Text>
           </View>
         </View>
         <View style={styles.rightContainer}>

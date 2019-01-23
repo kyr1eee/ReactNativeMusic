@@ -93,22 +93,22 @@ export default class Recommend extends Component {
   }
 
   render() {
-  return (
-    <View style={styles.container}>
-    <Banner />
-    {this.state.popularList.length > 0 && this.state.recommendPic.length > 0 ? (
-        <FlatList 
-          data={this.state.popularList}
-          keyExtractor={this._keyExtractor}
-          renderItem={this.renderPopularItem}
-          // getItemLayout={(data, index) => ({length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index})}
-          refreshing={true}
-          ListHeaderComponent={this.renderSlider}
-        />
-    ) : (
-      <Loading ifManIcon={true} />
-    )}
-    </View>
-  );
+    return (
+      <View style={styles.container}>
+      <Banner />
+      {this.state.popularList.length > 0 && this.state.recommendPic.length > 0 ? (
+          <FlatList 
+            data={this.state.popularList}
+            keyExtractor={this._keyExtractor}
+            renderItem={this.renderPopularItem}
+            // getItemLayout={(data, index) => ({length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index})}
+            refreshing={true}
+            ListHeaderComponent={this.renderSlider}
+          />
+      ) : (
+        <Loading ifManIcon={true} />
+      )}
+      </View>
+    );
   }
 }
