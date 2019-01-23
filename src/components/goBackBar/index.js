@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { styleConstant } from '../../styles/constant';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-import { styleConstant } from '../../styles/constant'
 const { width } = Dimensions.get('window');
 const propTypes = {
   goBack: PropTypes.func.isRequired,
-  singerName: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired
 };
 
-export default class index extends PureComponent {
+export default class GoBackBar extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
@@ -16,7 +16,7 @@ export default class index extends PureComponent {
           <Image style={styles.img} source={require('./back.png')} />
         </TouchableOpacity>
         <Text style={styles.text}>
-          {this.props.singerName}
+          {this.props.title}
         </Text>
         <View style={styles.nothing}></View>
       </View>
@@ -24,23 +24,29 @@ export default class index extends PureComponent {
   }
 }
 
+GoBackBar.propTypes = propTypes;
+
 const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
+    top: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     height: 50,
     width,
-    backgroundColor: styleConstant.bgColor.tab
+    zIndex: 1
   },
   img: {
-    width: 35,
-    height: 25,
+    width: 40,
+    height: 40,
     marginLeft: 6,
   },
   text: {
-    fontSize: 16,
-    color: '#fff'
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: 'bold',
+    color: "#fff"
   },
   nothing: {
     width: 50

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import GoBackBar from '../goBackBar';
 import { withNavigation } from 'react-navigation';
-import { styles } from '../../pages/recommend/recommend.style';
+import { styles } from './detailList.style';
 class DetailList extends Component {
   constructor(props) {
     super(props);
@@ -17,9 +17,11 @@ class DetailList extends Component {
   render() {
     console.log(this.state);
     return (
-      <View>
+      <View style={styles.container}>
         <GoBackBar title={this.state.singerName} goBack={() => this.props.navigation.goBack()} />
-        <Image source={{uri: this.state.imgUrl}} style={styles.img}/>
+        <View style={styles.imgContainer}>
+          <ImageBackground blurRadius={0.1} source={{uri: this.state.imgUrl}} style={styles.img}/>
+        </View>
       </View>
     )
   }

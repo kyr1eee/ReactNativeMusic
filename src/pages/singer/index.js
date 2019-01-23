@@ -17,7 +17,7 @@ export default class Recommend extends Component {
   static navigationOptions = {
       tabBarLabel: '歌手',
       headerTitle: '歌手',
-      tabBarIcon: <Image source={require('./Singer.png')} style={{width: 20, height: 20, color: '#fff'}}/>
+      tabBarIcon: <Image source={require('./Singer.png')} style={{width: 20, height: 20}}/>
   };
   
   constructor() {
