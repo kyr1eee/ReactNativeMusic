@@ -26,7 +26,7 @@ export function getSingerDetail(mid) {
   const query = Object.assign({}, commonParam, {
     platform: 'yqq',
     needNewCode: 0,
-    singermid: singermid,
+    singermid: mid,
     order: 'listen',
     begin: 0,
     num: 100,
