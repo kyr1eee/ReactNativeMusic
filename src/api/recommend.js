@@ -36,7 +36,7 @@ export async function getPopularList() {
           });
 }
 
-export async function getCdInfo() {
+export async function getCdInfo(disstid) {
     const url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg';
     const params = Object.assign({}, commonParam, {
         disstid,
@@ -56,4 +56,5 @@ export async function getCdInfo() {
         },
         params
     });
-}
+};
+

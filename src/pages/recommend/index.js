@@ -52,6 +52,7 @@ export default class Recommend extends Component {
       if(res.data.code === 0) {
         popularList = popularList.concat(res.data.data.list);
         this.setState({popularList: popularList});
+        console.log(popularList);
       } 
     }).catch(e => {
       console.error('请求推荐歌单数据失败', e);
@@ -69,14 +70,16 @@ export default class Recommend extends Component {
 
   renderPopularItem(popularList) {
     // 坑: FlatList的传入data后数据结构改变为{index: 0, item: [...], seperators: {...}}
-    const { imgurl, dissname, listennum, createtime} = popularList.item;
+    const { imgurl, dissname, listennum, createtime, dissid} = popularList.item;
     const creatorName = popularList.item.creator.name; 
+    
     return (
       <PopularItem imgUrl={imgurl}
                    dissName={dissname}
                    creatorName={creatorName}
                    listenNum={listennum}
                    createTime={createtime}
+                   dissid={dissid}
       />
     );
   }

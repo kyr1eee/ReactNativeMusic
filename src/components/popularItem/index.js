@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import { withNavigation, StackActions} from 'react-navigation';
 
 const { width } = Dimensions.get('window');
 const propTypes = {
@@ -9,15 +10,29 @@ const propTypes = {
   listenNum: PropTypes.number.isRequired,
   creatorName: PropTypes.string.isRequired,
   createTime: PropTypes.string.isRequired,
+  dissid: PropTypes.string.isRequired
 };
 
 
 // 用于FlatList的getItemLayout
 export const ITEM_HEIGHT = 170;
-export default class PopularItem extends PureComponent {
+class PopularItem extends PureComponent {
   render() {
+    const {imgUrl, dissName, dissid} = this.props;
+    const pushActions = StackActions.push({
+      routeName: 'SingerDetail',
+      params: {
+        imgUrl,
+        dissName,
+        dissid,
+        type: 'cd'
+      }
+    });
     return (
-      <TouchableOpacity style={styles.wrapper}>
+      <TouchableOpacity 
+        style={styles.wrapper}
+        onPress={() => this.props.navigation.dispatch(pushActions)}
+      >
         <View style={styles.container}>
           <Image source={{uri: this.props.imgUrl}} style={styles.img} />
           <View style={styles.message}>
@@ -89,4 +104,6 @@ const styles = StyleSheet.create({
     height: 12,
     marginRight: 6
   }
-})
+});
+
+export default withNavigation(PopularItem);

@@ -71,6 +71,7 @@ class SingerList extends Component {
         imgUrl: img,
         singerName: name,
         mid,
+        type: 'singer'
       }
     });
     return (

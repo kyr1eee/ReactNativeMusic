@@ -5,7 +5,6 @@ import SongLine from '../songLine';
 const {width} = Dimensions.get('window');
 const propTypes = {
   musicData: PropTypes.array.isRequired,
-  singerName: PropTypes.string.isRequired
 };
 
 export default class SongList extends Component {
@@ -13,15 +12,16 @@ export default class SongList extends Component {
     super(props);
     this.renderSongLine = this.renderSongLine.bind(this);
     this.renderItemSeparator = this.renderItemSeparator.bind(this);
+    console.log('constructor', this.props.musicData);
   }
 
   renderSongLine(data) {
     const {index} = data;
+    console.log('data:', data);
     const musicData = data.item.musicData;
     const songName = musicData.songname;
     const albumName = musicData.albumname;
-    const singerName = this.props.singerName;
-    console.log(index, songName, albumName, singerName);
+    const singerName = this.props.singerName ? this.props.singerName : '';
     return(
       <SongLine 
         index={index + 1} 
