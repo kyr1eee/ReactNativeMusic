@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {View, FlatList, StyleSheet, Dimensions } from 'react-native';
 import SongLine from '../songLine';
+import Loading from '../loading';
 const {width} = Dimensions.get('window');
 const propTypes = {
   musicData: PropTypes.array.isRequired,
@@ -12,13 +13,12 @@ export default class SongList extends Component {
     super(props);
     this.renderSongLine = this.renderSongLine.bind(this);
     this.renderItemSeparator = this.renderItemSeparator.bind(this);
-    console.log('constructor', this.props.musicData);
   }
 
   renderSongLine(data) {
     const {index} = data;
-    console.log('data:', data);
     const musicData = data.item.musicData;
+    console.log('musicData:', musicData);
     const songName = musicData.songname;
     const albumName = musicData.albumname;
     const singerName = this.props.singerName ? this.props.singerName : '';
@@ -41,14 +41,14 @@ export default class SongList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <FlatList
+        { this.props.musicData ? <FlatList
           data={this.props.musicData} 
-          keyExtractor={(item) => 'singer' + item.index}
+          keyExtractor={(item) => 'singer' + item.index + Math.floor(Math.random()*1000)}
           renderItem={this.renderSongLine}
           ItemSeparatorComponent={this.renderItemSeparator}
           // refreshing={false}
           // onRefresh={() => alert(1)}
-        />
+        /> : <Loading ifManIcon={false} />}
       </View>
     )
   }
@@ -60,6 +60,8 @@ const styles = StyleSheet.create({
   container: {
     // fuck you !!!!!!!
     // flex: 1
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
   line: {
     height: 1,

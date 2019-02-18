@@ -16,12 +16,12 @@ export default class Loading extends PureComponent {
   render() {
     const { ifManIcon } = this.props;
     return ifManIcon ? (
-      <View style={styles.container}>
+      <View style={{...styles.container, height}}>
         <Image source={require('./loading_nba.gif')} />
       </View>
     ) : (
       <View style={styles.container}>
-        <Image source={require('./loading_color.gif')} />
+        <Image style={styles.color} source={require('./loading_color.gif')} />
       </View>
     );
   }
@@ -32,7 +32,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height
+    // height
+  },
+  color: {
+    width: 200,
+    height: 200
   }
 })
 Loading.propTypes = propTypes;

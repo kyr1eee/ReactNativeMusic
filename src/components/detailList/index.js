@@ -74,9 +74,10 @@ class DetailList extends Component {
         data = JSON.parse(matches[1]);
     }
     return data;
-}
+  }
 
   render() {
+    console.log('render', this.state.musicList);
     return (
       <View style={styles.container}>
         <GoBackBar title={this.state.title} goBack={() => this.props.navigation.goBack()} />
